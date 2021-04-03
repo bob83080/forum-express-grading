@@ -4,7 +4,9 @@ const db = require('./models') // 引入資料庫
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const session = require('express-session')
+const methodOverride = require('method-override')
 const passport = require('./config/passport')
+
 const app = express()
 const port = 3000
 
@@ -19,6 +21,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
+app.use(methodOverride('_method'))
 
 app.use((req, res, next) => {
   res.locals.success_messages = req.flash('success_messages')
