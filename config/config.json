@@ -22,5 +22,10 @@
         "rejectUnauthorized": false
       }
     }
+  },
+  "travis": {
+    "username": "travis",
+    "dialect": "mysql",
+    "logging": false
   }
 }
