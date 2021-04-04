@@ -1,0 +1,42 @@
+<h1>使用者管理</h1>
+<div class="p-1">
+  <a href='/admin/restaurants'>
+    <button type="button" class="btn btn-primary">Restaurant</button>
+  </a>
+</div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+      {{#if this.isAdmin}}
+      <td>Administrator</td>
+      <td>
+        <form action="/admin/users/{{this.id}}/toggleAdmin?_method=PUT" method="POST">
+          <button type="submit" class="btn btn-success">set as user</button>
+        </form>
+      </td>
+      {{else}}
+      <td>User</td>
+      <td>
+        <form action="/admin/users/{{this.id}}/toggleAdmin?_method=PUT" method="POST">
+          <button type="submit" class="btn btn-warning">set as admin</button>
+        </form>
+      </td>
+      {{/if}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
