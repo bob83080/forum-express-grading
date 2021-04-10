@@ -1,4 +1,5 @@
 const fs = require('fs')
+const helpers = require('../_helpers')
 const bcrypt = require('bcryptjs')
 const db = require('../models')
 const User = db.User
@@ -95,16 +96,16 @@ const userController = {
     req.logout()
     res.redirect('/signin')
   },
-  getUser: (req, res) => {
+  getUser: async (req, res) => {
     return User.findByPk(req.params.id).then(user => {
 
       return res.render('userProfile', {
-        user: user.toJSON()
+        userNow: user.toJSON()
       })
     })
   },
 
-  editUser: (req, res) => {
+  editUser: async (req, res) => {
     User.findAll({
       raw: true,
       nest: true
@@ -117,7 +118,7 @@ const userController = {
     })
   },
 
-  putUser: (req, res) => {
+  putUser: async (req, res) => {
     if (!req.body.name) {
       req.flash('error_messages', "name didn't exist")
       return res.redirect('back')
