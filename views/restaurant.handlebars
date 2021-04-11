@@ -30,7 +30,7 @@
   </form>
   {{/if}}
   <h4><a href="/users/{{this.User.id}}">{{this.User.name}}</a></h4>
-  <p>{{this.text}}</p>
+  <p class="col-10" style="text-align:start; word-wrap: break-word">{{this.text}}</p>
   <footer class="blockquote-footer">{{moment this.createdAt}}</footer>
 </blockquote>
 <hr />
@@ -40,7 +40,7 @@
 <form action="/comments" method="POST">
   <div class="form-group">
     <label for="text">留下評論：</label>
-    <textarea class="form-control" id="text" name="text" rows="3"></textarea>
+    <textarea class="form-control" id="text" name="text" rows="3" maxlength="200"></textarea>
   </div>
   <input type="hidden" name="restaurantId" value="{{restaurant.id}}" />
   <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,19 +1,35 @@
-<div class="row">
-  <div class="col-md-12">
-    <h1>{{userNow.name}}</h1>
-  </div>
-  <div class="col-md-4">
-    <img class="img-responsive center-block" src="{{userNow.image}}" style="width: 250px;margin-bottom: 25px;">
-    <div class="well">
-      <ul class="list-unstyled">
-        <li><strong>User Name:</strong> {{userNow.name}}</li>
-        <li><strong>User Email:</strong> {{userNow.email}}</li>
-      </ul>
+<div class="row card">
+  <div>
+    <div class="col-md-12">
+      <h1>{{userNow.name}}</h1>
+    </div>
+    <div class="col-md-6 d-flex justify-content-between">
+      <img class="img-responsive center-block " src="{{userNow.image}}" style="width: 250px;margin-bottom: 25px;">
+      <div class="well">
+        <ul class="list-unstyled ">
+          <li><strong>User Name:</strong> {{userNow.name}}</li>
+          <li><strong>User Email:</strong> {{userNow.email}}</li>
+        </ul>
+        {{#ifCond userNow.id user.id}}
+        <a href="/users/{{userNow.id}}/edit" class="col-md-4 btn btn-success ">Edit</a>
+        {{/ifCond}}
+      </div>
     </div>
   </div>
-  <hr>
 </div>
+<br>
+<div class="row card shadow-sm">
+  <div>
+    <div class="card-header col-md-12">
+      <h3>{{count}} 間已評論餐廳</h3>
+    </div>
+    <div class="card-body col-md-6 d-flex justify-content-start">
+      {{#each comments}}
+      <a href="/restaurants/{{this.RestaurantId}}" class="mr-2 ">
+        <img class="img-responsive mx-2 center-block " src="{{this.Restaurant.image}}" style="width: 75px;">
+      </a>
 
-{{#ifCond userNow.id user.id}}
-<a href="/users/{{userNow.id}}/edit" class="btn btn-success">Edit</a>
-{{/ifCond}}
+      {{/each}}
+    </div>
+  </div>
+</div>
