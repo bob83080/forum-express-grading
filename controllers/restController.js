@@ -52,13 +52,17 @@ const restController = {
       })
     })
   },
-  getRestaurant: (req, res) => {
+  getRestaurant: async (req, res) => {
     return Restaurant.findByPk(req.params.id, {
       include: [
         Category,
         { model: Comment, include: [User] }
       ]
+
     }).then(restaurant => {
+      if (!req.session.views[req.params.id]) {
+        restaurant.increment('viewCount')
+      }
       return res.render('restaurant', {
         restaurant: restaurant.toJSON(),
       })
