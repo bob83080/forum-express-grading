@@ -100,6 +100,18 @@ const adminController = {
       req.flash('error_messages', "name didn't exist")
       return res.redirect('back')
     }
+    if (!req.body.tel) {
+      req.flash('error_messages', "telephone number didn't exist")
+      return res.redirect('back')
+    }
+    if (!req.body.address) {
+      req.flash('error_messages', "address didn't exist")
+      return res.redirect('back')
+    }
+    if (!req.body.description) {
+      req.flash('error_messages', "description didn't exist")
+      return res.redirect('back')
+    }
 
     const { file } = req
     if (file) {
