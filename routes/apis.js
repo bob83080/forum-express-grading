@@ -16,6 +16,7 @@ router.post('/admin/categories', categoryController.postCategory)
 
 
 router.put('/admin/restaurants/:id', upload.single('image'), adminController.putRestaurant)
+router.put('/admin/categories/:id', categoryController.putCategory)
 
 
 router.delete('/admin/restaurants/:id', adminController.deleteRestaurant)
